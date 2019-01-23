@@ -1,0 +1,43 @@
+server:
+  port: 8091
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8090/eureka/
+
+spring:
+  application:
+    name: pro
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: 11
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      idle-timeout: 3000
+      pool-name: DatebookHikariCP
+
+mybatis:
+  type-aliases-package: com.example.entity
+  mapper-locations: classpath:com/example/mapper/*.xml
+
+mapper:
+  mappers: com.example.common.MyMapper
+  not-empty: false
+  identity: MYSQL
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+logging:
+  level:
+    com.jumstc.ops.console.mapper: debug

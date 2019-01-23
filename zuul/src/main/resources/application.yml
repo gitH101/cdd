@@ -1,0 +1,43 @@
+server:
+  port: 8093  #端口号
+
+spring:
+  application:
+    name: zuul  #服务注册中心测试名
+
+zuul:
+  routes:
+    auth:
+      path: /auth/**
+      serviceId: auth
+    user:
+      path: /user/**
+      serviceId: user
+
+feign:
+  compression:
+    request:
+      enable: true
+      mime-types: text/xml;application/xml;application/json
+      min-request-size: 2048
+    response:
+      enabled: true
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8090/eureka/  #服务注册中心
+
+gate:
+  ignore:
+    startWith: /auth/jwt, /open
+
+auth:
+  serviceId: auth
+  user:
+    token-header: Authorization
+  client:
+    token-header: x-client-token
+#    id: ace-gate  #不填则默认读取spring.application.name
+    secret: 123456

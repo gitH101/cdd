@@ -1,0 +1,6 @@
+server:
+  port: 8094  #端口号
+
+spring:
+  application:
+    name: auth  #服务注册中心测试名
